@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+          prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfx.AddStat2Controller">
+    <columnConstraints>
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <CheckBox fx:id="mainStatCheckBox" mnemonicParsing="false" prefHeight="82.0" prefWidth="141.0" text="Main Stat?">
+            <font>
+                <Font size="20.0" />
+            </font></CheckBox>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1">
+            <children>
+                <ComboBox fx:id="selector" prefHeight="52.0" prefWidth="179.0" promptText="Select Stat">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Crit Rate" />
+                            <String fx:value="Crit Damage" />
+                            <String fx:value="ATK%" />
+                            <String fx:value="ATK" />
+                            <String fx:value="Elemental Mastery" />
+                            <String fx:value="Energy Recharge" />
+                            <String fx:value="Physical DMG Bonus" />
+                            <String fx:value="Pyro DMG Bonus" />
+                            <String fx:value="Hydro DMG Bonus" />
+                            <String fx:value="Cryo DMG Bonus" />
+                            <String fx:value="Electro DMG Bonus" />
+                            <String fx:value="Anemo DMG Bonus" />
+                            <String fx:value="Geo DMG Bonus" />
+                            <String fx:value="Dendro DMG Bonus" />
+                            <String fx:value="HP%" />
+                            <String fx:value="HP" />
+                            <String fx:value="DEF%" />
+                            <String fx:value="DEF" />
+                            <String fx:value="Healing Bonus" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+                            <children>
+                                <Label text="Minimum">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="lowerBound" alignment="CENTER" prefHeight="18.0" prefWidth="40.0" text="0">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </TextField>
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+                            <children>
+                                <Label text="Maximum">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="upperBound" alignment="CENTER" prefHeight="18.0" prefWidth="40.0" text="10000">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </TextField>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</GridPane>
