@@ -21,22 +21,18 @@ public class AddStat1Controller {
     @FXML
     private TextField upperBound;
 
-    private ExactMatchConditionEditorController EMCEC;
-
-    @FXML
-    private void initialize() {
-        //selector.lookup(".list-view").setStyle("-fx-font-size: 20pt;");
-        //selector.setStyle("-fx-font-size: 20pt;");
-    }
-
-    public void attachEditorController(ExactMatchConditionEditorController emcec) {
-        this.EMCEC = emcec;
-    }
-
+    /**
+     * Self explanatory
+     * @return true if the checkbox for main stat is checked, false otherwise.
+     */
     public boolean isMainStat() {
         return mainStatCheckBox.isSelected();
     }
 
+    /**
+     * Gets the selected value of the ComboBox and gets the proper Enum translation
+     * @return corresponding Enum for the selected value.
+     */
     public Stat getStat() {
         return switch (selector.getValue()) {
             case "Crit Rate" -> Stat.CRIT_RATE;
@@ -62,6 +58,13 @@ public class AddStat1Controller {
         };
     }
 
+    /**
+     * Returns the two numbers in the two text fields. No errors are thrown should the inputs be
+     * invalid. The program would not crash, but fail to work when Scanner.execute() is called.
+     * It is assumed the user is reasonable and would find the cause of this error.
+     * @return a Pair instance with the first value being the lower bound, the second being the
+     * upper bound.
+     */
     public Pair<Double, Double> getRange() {
         return new Pair<>(textFieldToDouble(lowerBound), textFieldToDouble(upperBound));
     }

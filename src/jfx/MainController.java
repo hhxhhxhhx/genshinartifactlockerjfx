@@ -25,15 +25,6 @@ import java.util.List;
 public class MainController {
 
     @FXML
-    private Button startScan;
-
-    @FXML
-    private Button showExactMatch;
-
-    @FXML
-    private Button showMultiMatch;
-
-    @FXML
     private CheckBox fiveStarCheckbox;
 
     @FXML
@@ -43,21 +34,36 @@ public class MainController {
     private TextField monitorHeight;
 
     private int currentExactMatchID = 0;
-    private List<Pair<Integer, ExactMatch>> exactMatchList = new ArrayList<>();
+    private final List<Pair<Integer, ExactMatch>> exactMatchList = new ArrayList<>();
     private int currentAtLeastXID = 0;
-    private List<Pair<Integer, ExactMatch>> atLeastXList = new ArrayList<>();
+    private final List<Pair<Integer, ExactMatch>> atLeastXList = new ArrayList<>();
     private AtLeastXEditorController ALXEC;
 
+    /**
+     * Method used by ExactMatchConditionEditorController to add an ExactMatch condition.
+     * @param exactMatchCondition
+     * @return id of the added ExactMatch condition
+     */
     public int addExactMatchCondition(ExactMatch exactMatchCondition) {
         exactMatchList.add(new Pair<>(currentExactMatchID, exactMatchCondition));
         return currentExactMatchID++;
     }
 
+    /**
+     * Method used by AtLeastXEditorController to temporarily add a sub-condition.
+     * @param atLeastXCondition
+     * @return id of the added sub-condition
+     */
     public int addAtLeastXCondition(ExactMatch atLeastXCondition) {
         atLeastXList.add(new Pair<>(currentAtLeastXID, atLeastXCondition));
         return currentAtLeastXID++;
     }
 
+    /**
+     * Method used by ExactMatchConditionEditorController to remove an ExactMatch condition.
+     * @param id
+     * @return true if successful, false if unsuccessful
+     */
     public boolean removeExactMatchByID(int id) {
         for (int i = 0; i < exactMatchList.size(); i++) {
             if (exactMatchList.get(i).getFirst().equals(id)) {
@@ -68,6 +74,11 @@ public class MainController {
         return false;
     }
 
+    /**
+     * Method used by AtLeastXEditorController to remove a sub-condition.
+     * @param id
+     * @return true if successful, false if unsuccessful
+     */
     public boolean removeAtLeastXByID(int id) {
         for (int i = 0; i < atLeastXList.size(); i++) {
             if (atLeastXList.get(i).getFirst().equals(id)) {
@@ -78,6 +89,14 @@ public class MainController {
         return false;
     }
 
+    /**
+     * Method executed when the main button is pressed.
+     * It first compiles the ExactMatch conditions and also constructs a single AtLeastX
+     * condition from all the sub-conditions.
+     * It will then read the monitor dimensions and other settings before creating an instance of
+     * Scanner, which will then execute the full process.
+     * @param ae
+     */
     @FXML
     protected void startProcess(ActionEvent ae) {
         List<Condition> conditions = new ArrayList<>();
@@ -154,7 +173,13 @@ public class MainController {
         System.out.println("Locked " + result.getLast() + " artifacts.");
     }
 
+
     private Scene exactMatchEditorScene = null;
+
+    /**
+     * Creates the instance of ExactMatchConditionEditorController and displays it as a pop up.
+     * The view is saved and can be reopened at any time without losing data.
+     */
     @FXML
     protected void displayExactMatchEditor(ActionEvent ae) throws IOException {
         Stage stage = new Stage();
@@ -171,6 +196,11 @@ public class MainController {
     }
 
     private Scene atLeastXEditorScene = null;
+
+    /**
+     * Creates the instance of AtLeastXEditorController and displays it as a pop up.
+     * The view is saved and can be reopened at any time without losing data.
+     */
     @FXML
     protected void displayAtLeastXMatchEditor(ActionEvent ae) throws IOException {
         Stage stage = new Stage();

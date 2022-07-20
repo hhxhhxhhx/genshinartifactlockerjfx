@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.image.BufferedImage;
 
+/**
+ * Utility class that manipulates java.awt.Robot.
+ */
 public class RobotUtil {
 
     private final Robot robot;

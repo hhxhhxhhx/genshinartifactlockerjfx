@@ -12,11 +12,10 @@ import java.util.regex.Pattern;
 
 public class Logic {
 
+    /*
     private final int windowWidth = 1600;
     private final int windowHeight = 900;
-
-    private final int monitorWidth;
-    private final int monitorHeight;
+     */
 
     private final int offsetX;
     private final int offsetY;
@@ -26,11 +25,9 @@ public class Logic {
     private final Tesseract tesseract;
 
     public Logic(int monitorWidth, int monitorHeight) {
-        this.monitorWidth = monitorWidth;
-        this.monitorHeight = monitorHeight;
 
-        this.offsetX = (monitorWidth - windowWidth) / 2;
-        this.offsetY = (monitorHeight - windowHeight) / 2 + 11;
+        this.offsetX = (monitorWidth - 1600) / 2;
+        this.offsetY = (monitorHeight - 900) / 2 + 11;
 
         robot = new RobotUtil();
 
@@ -112,10 +109,6 @@ public class Logic {
         }
     }
 
-    public void manualMove(int x, int y) {
-        robot.moveTo(x, y);
-    }
-
     /**
      * Move the mouse to exact (x, y), and clicks on that position to focus that artifact.
      * Used prior to getStars() to get the correct artifact.
@@ -143,7 +136,13 @@ public class Logic {
         robot.click();
     }
 
+
     private int scrollCounter = 0;
+
+    /**
+     * Method to simulate scrolling down the mouse wheel. Ideally calling robot.scrollDown(10)
+     * will scroll down 10 times. However, it doesn't seem to work.
+     */
     public void scrollDown() {
         moveToArtifact(1, 1);
         if (scrollCounter == 3) {
@@ -161,6 +160,13 @@ public class Logic {
         }
     }
 
+    /**
+     * Method to be called by Scanner to go to a specific artifact and press the lock symbol,
+     * only if it is unlocked.
+     * @param row
+     * @param col
+     * @return 1 if the artifact is newly locked, 0 if the artifact is already locked.
+     */
     public int lockArtifactAt(int row, int col) {
         moveToArtifact(row, col);
         if (!isLocked()) {
@@ -176,6 +182,11 @@ public class Logic {
         return 0;
     }
 
+    /**
+     * Method to be called to run OCR on a specific area of the screen to capture the artifact's
+     * name.
+     * @return name of the artifact
+     */
     public String getArtifactName() {
         int startX = offsetX + 1090;
         int startY = offsetY + 100;
@@ -185,6 +196,12 @@ public class Logic {
         return doOCR(robot.getScreenCapture(area));
     }
 
+    /**
+     * Method to be called to run OCR on a specific area of the screen to capture the type of
+     * artifact. There are currently no uses for this. This method may be deprecated and removed
+     * in the future.
+     * @return Piece Enum of the artifact
+     */
     public Piece getArtifactPiece() {
         int startX = offsetX + 1100;
         int startY = offsetY + 150;
@@ -202,6 +219,11 @@ public class Logic {
         };
     }
 
+    /**
+     * Method to be called to run OCR on a specific area of the screen to capture the main stat
+     * of the artifact.
+     * @return Stat Enum of the artifact.
+     */
     public Stat getArtifactMainStat() {
         Piece pieceType = this.getArtifactPiece();
         switch (pieceType) {
@@ -239,6 +261,12 @@ public class Logic {
         };
     }
 
+    /**
+     * Method to be called to run OCR on a specific area of the screen to capture all substats
+     * of the artifact. It will also take into consideration artifacts with less than 4 substats
+     * and ignore extra text.
+     * @return Pairs of Stat Enums and the values of the artifact.
+     */
     public List<Pair<Stat, Double>> getArtifactSubstats() {
         List<Pair<Stat, Double>> substats = new ArrayList<>();
 
@@ -281,6 +309,12 @@ public class Logic {
         return substats;
     }
 
+    /**
+     * Private method to parse the OCRed results into more useful data types.
+     * @param str
+     * @param stat
+     * @return Pairs of Stat Enums and values in Double format.
+     */
     private Pair<Stat, Double> generatePair(String str, Stat stat) {
         boolean percentage = switch (stat) {
             case HP_PERCENT, ATK_PERCENT, DEF_PERCENT, CRIT_RATE, CRIT_DMG, ENERGY_RECHARGE -> true;
@@ -294,6 +328,11 @@ public class Logic {
         }
     }
 
+    /**
+     * Uses OCR to analyze the provided image.
+     * @param screenCapture
+     * @return the text in the provided image
+     */
     public String doOCR(BufferedImage screenCapture) {
         try {
             return tesseract.doOCR(screenCapture).strip();

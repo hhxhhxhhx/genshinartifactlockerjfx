@@ -22,13 +22,32 @@ public class ExactMatch implements Condition {
         this.maxSubstat = maxSubstat;
         this.checksMain = checksMain;
     }
+
+    /**
+     * Static method to create an ExactMatch instance that requires the main stat to match.
+     * @param mainStat
+     * @return instance of ExactMatch corresponding to the input.
+     */
     public static ExactMatch mainStatMatch(Stat mainStat) {
         return new ExactMatch(mainStat, null, 0, 0, true);
     }
+
+    /**
+     * Static method to create an ExactMatch instance that requires the substat to match and be
+     * in a certain range.
+     * @param substat
+     * @param minValue
+     * @param maxValue
+     * @return instance of ExactMatch corresponding to the inputs.
+     */
     public static ExactMatch substatMatch(Stat substat, double minValue, double maxValue) {
         return new ExactMatch(null, substat, minValue, maxValue, false);
     }
 
+    /**
+     * Self explanatory
+     * @return stat required under this condition, regardless of whether it is main or sub.
+     */
     public Stat getStat() {
         if (checksMain) {
             return mainStat;
@@ -46,6 +65,10 @@ public class ExactMatch implements Condition {
         return new Pair<>(minSubstat, maxSubstat);
     }
 
+    /**
+     * Self explanatory
+     * @return true if main stat is to be checked, false otherwise.
+     */
     public boolean isMainStat() {
         return checksMain;
     }
@@ -59,6 +82,13 @@ public class ExactMatch implements Condition {
         }
     }
 
+    /**
+     * Method to be called to verify if the provided main stat and substats meet the condition
+     * set by this instance of AtLeastX.
+     * @param mainStat
+     * @param substats
+     * @return true if the conditions are satisfied, false otherwise.
+     */
     @Override
     public boolean satisfiedBy(Stat mainStat, List<Pair<Stat, Double>> substats) {
         if (checksMain) {

@@ -24,11 +24,26 @@ public class AtLeastX implements Condition {
         this.includeMainStat = usingMain;
     }
 
+    /**
+     * Static method to create an AtLeastX instance that only takes into consideration substats.
+     * @param X
+     * @param substat
+     * @param substatValues
+     * @return AtLeastX instance corresponding to the input conditions.
+     */
     public static AtLeastX createAtLeastXSubstats(int X, List<Stat> substat,
                                       List<Pair<Double, Double>> substatValues) {
         return new AtLeastX(X, null, substat, substatValues, false);
     }
 
+    /**
+     * Static method to create an AtLeastX instance that can include both main stats and substats.
+     * @param X
+     * @param mainStat
+     * @param substat
+     * @param substatValues
+     * @return AtLeastX instance corresponding to the input conditions.
+     */
     public static AtLeastX createAtLeastXStats(int X, Stat mainStat,
                                                     List<Stat> substat,
                                                     List<Pair<Double, Double>> substatValues) {
@@ -51,6 +66,13 @@ public class AtLeastX implements Condition {
         return sb.toString();
     }
 
+    /**
+     * Method to be called to verify if the provided main stat and substats meet the condition
+     * set by this instance of AtLeastX.
+     * @param mainStat
+     * @param substats
+     * @return true if the conditions are satisfied, false otherwise.
+     */
     @Override
     public boolean satisfiedBy(Stat mainStat, List<Pair<Stat, Double>> substats) {
         int matches = 0;

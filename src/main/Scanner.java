@@ -22,6 +22,12 @@ public class Scanner {
         this.conditions = conditions;
     }
 
+    /**
+     * Method to be executed to start the scanning. In the equivalent of this program that only
+     * uses CLI for user input, this would be called after all the user inputs are confirmed and
+     * the scanning and locking to begin.
+     * @return Pair(artifacts processed, artifacts modified)
+     */
     public Pair<Integer, Integer> execute() {
         int uniqueArtifactsLookedAt = 0;
         int artifactsModified = 0;
@@ -93,6 +99,11 @@ public class Scanner {
         return new Pair<>(uniqueArtifactsLookedAt, artifactsModified);
     }
 
+    /**
+     * Self explanatory private method.
+     * @param art
+     * @return
+     */
     private boolean satisfiesLockCondition(Artifact art) {
         for (Condition condition : conditions) {
             if (!condition.satisfiedBy(art.MAIN_STAT, art.SUBSTATS)) {
@@ -102,6 +113,12 @@ public class Scanner {
         return true;
     }
 
+    /**
+     * Constructs an Artifact object for the artifact at position (row, col) in the current screen.
+     * @param row
+     * @param col
+     * @return Artifact instance with the values of the artifact scanned.
+     */
     private Artifact craftArtifactAtPos(int row, int col) {
         logic.moveToArtifact(row, col);
         String name = logic.getArtifactName();
