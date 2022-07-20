@@ -1,4 +1,6 @@
 .idea/
-out/
+out/production/
 src/test/
 .DS_Store
+src/META-INF/
+src/META-INF/MANIFEST.MF

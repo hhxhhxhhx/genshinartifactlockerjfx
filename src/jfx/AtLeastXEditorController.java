@@ -126,6 +126,7 @@ public class AtLeastXEditorController {
     @FXML
     protected void openAddConditionPopup(ActionEvent ae) throws IOException {
         Stage stage = new Stage();
+        stage.setTitle("Add New Requirement");
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddStat2.fxml"));
         Scene addStats2 = new Scene(loader.load());

@@ -103,6 +103,7 @@ public class ExactMatchConditionEditorController {
     @FXML
     protected void openAddConditionPopup(ActionEvent ae) throws IOException {
         Stage stage = new Stage();
+        stage.setTitle("Add New Requirement");
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddStat1.fxml"));
         Scene addStats1 = new Scene(loader.load());
