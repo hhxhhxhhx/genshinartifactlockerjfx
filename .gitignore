@@ -1,5 +1,5 @@
 .idea/
-out/production/
+out/
 src/test/
 .DS_Store
 src/META-INF/

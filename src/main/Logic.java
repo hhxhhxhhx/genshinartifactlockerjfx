@@ -3,6 +3,8 @@ package main;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 import util.*;
+
+import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -34,10 +36,8 @@ public class Logic {
         tesseract = new Tesseract();
         tesseract.setLanguage("eng");
         tesseract.setOcrEngineMode(1);
-        tesseract.setDatapath("src/util/");
+        tesseract.setDatapath("./tessdata/");
     }
-
-
 
     /**
      * If an artifact is already clicked on, this method will return the star count of this
