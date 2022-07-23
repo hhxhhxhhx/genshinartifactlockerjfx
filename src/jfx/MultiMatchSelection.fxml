@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jfx.MultiMatchSelectionController">
+    <children>
+        <Label text="Choose which stats should be required">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <GridPane alignment="CENTER" prefHeight="277.0" prefWidth="600.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="25.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Button mnemonicParsing="false" onAction="#reset1" text="Reset" />
+                <Button layoutX="541.0" layoutY="26.0" mnemonicParsing="false" onAction="#reset2" text="Reset" GridPane.rowIndex="1" />
+                <Button layoutX="541.0" layoutY="82.0" mnemonicParsing="false" onAction="#reset3" prefWidth="45.0" text="Reset" GridPane.rowIndex="2" />
+                <Button layoutX="541.0" layoutY="137.0" mnemonicParsing="false" onAction="#reset4" prefWidth="45.0" text="Reset" GridPane.rowIndex="3" />
+                <Button layoutX="541.0" layoutY="192.0" mnemonicParsing="false" onAction="#reset5" prefWidth="45.0" text="Reset" GridPane.rowIndex="4" />
+                <CheckBox fx:id="cb1" mnemonicParsing="false" text="Main Stat?"
+                          GridPane.columnIndex="1">
+                    <font>
+                        <Font size="16.0" />
+                    </font></CheckBox>
+                <CheckBox fx:id="cb2" layoutX="58.0" layoutY="26.0" mnemonicParsing="false"
+                          text="Main Stat?" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id="cb3" layoutX="58.0" layoutY="82.0" mnemonicParsing="false"
+                          text="Main Stat?" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id="cb4" layoutX="58.0" layoutY="26.0" mnemonicParsing="false"
+                          text="Main Stat?" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id="cb5" layoutX="58.0" layoutY="26.0" mnemonicParsing="false"
+                          text="Main Stat?" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </CheckBox>
+                <ComboBox fx:id="selector1" prefWidth="150.0" promptText="Select Stat"
+                          GridPane.columnIndex="2">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Select Stat" />
+                            <String fx:value="Crit Rate" />
+                            <String fx:value="Crit Damage" />
+                            <String fx:value="ATK%" />
+                            <String fx:value="ATK" />
+                            <String fx:value="Elemental Mastery" />
+                            <String fx:value="Energy Recharge" />
+                            <String fx:value="Physical DMG Bonus" />
+                            <String fx:value="Pyro DMG Bonus" />
+                            <String fx:value="Hydro DMG Bonus" />
+                            <String fx:value="Cryo DMG Bonus" />
+                            <String fx:value="Electro DMG Bonus" />
+                            <String fx:value="Anemo DMG Bonus" />
+                            <String fx:value="Geo DMG Bonus" />
+                            <String fx:value="Dendro DMG Bonus" />
+                            <String fx:value="HP%" />
+                            <String fx:value="HP" />
+                            <String fx:value="DEF%" />
+                            <String fx:value="DEF" />
+                            <String fx:value="Healing Bonus" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <ComboBox fx:id="selector2" layoutX="235.0" layoutY="26.0" prefWidth="150.0"
+                          promptText="Select Stat" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Select Stat" />
+                            <String fx:value="Crit Rate" />
+                            <String fx:value="Crit Damage" />
+                            <String fx:value="ATK%" />
+                            <String fx:value="ATK" />
+                            <String fx:value="Elemental Mastery" />
+                            <String fx:value="Energy Recharge" />
+                            <String fx:value="Physical DMG Bonus" />
+                            <String fx:value="Pyro DMG Bonus" />
+                            <String fx:value="Hydro DMG Bonus" />
+                            <String fx:value="Cryo DMG Bonus" />
+                            <String fx:value="Electro DMG Bonus" />
+                            <String fx:value="Anemo DMG Bonus" />
+                            <String fx:value="Geo DMG Bonus" />
+                            <String fx:value="Dendro DMG Bonus" />
+                            <String fx:value="HP%" />
+                            <String fx:value="HP" />
+                            <String fx:value="DEF%" />
+                            <String fx:value="DEF" />
+                            <String fx:value="Healing Bonus" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <ComboBox fx:id="selector3" layoutX="235.0" layoutY="82.0" prefWidth="150.0"
+                          promptText="Select Stat" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Select Stat" />
+                            <String fx:value="Crit Rate" />
+                            <String fx:value="Crit Damage" />
+                            <String fx:value="ATK%" />
+                            <String fx:value="ATK" />
+                            <String fx:value="Elemental Mastery" />
+                            <String fx:value="Energy Recharge" />
+                            <String fx:value="Physical DMG Bonus" />
+                            <String fx:value="Pyro DMG Bonus" />
+                            <String fx:value="Hydro DMG Bonus" />
+                            <String fx:value="Cryo DMG Bonus" />
+                            <String fx:value="Electro DMG Bonus" />
+                            <String fx:value="Anemo DMG Bonus" />
+                            <String fx:value="Geo DMG Bonus" />
+                            <String fx:value="Dendro DMG Bonus" />
+                            <String fx:value="HP%" />
+                            <String fx:value="HP" />
+                            <String fx:value="DEF%" />
+                            <String fx:value="DEF" />
+                            <String fx:value="Healing Bonus" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <ComboBox fx:id="selector4" layoutX="235.0" layoutY="137.0" prefWidth="150.0"
+                          promptText="Select Stat" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Select Stat" />
+                            <String fx:value="Crit Rate" />
+                            <String fx:value="Crit Damage" />
+                            <String fx:value="ATK%" />
+                            <String fx:value="ATK" />
+                            <String fx:value="Elemental Mastery" />
+                            <String fx:value="Energy Recharge" />
+                            <String fx:value="Physical DMG Bonus" />
+                            <String fx:value="Pyro DMG Bonus" />
+                            <String fx:value="Hydro DMG Bonus" />
+                            <String fx:value="Cryo DMG Bonus" />
+                            <String fx:value="Electro DMG Bonus" />
+                            <String fx:value="Anemo DMG Bonus" />
+                            <String fx:value="Geo DMG Bonus" />
+                            <String fx:value="Dendro DMG Bonus" />
+                            <String fx:value="HP%" />
+                            <String fx:value="HP" />
+                            <String fx:value="DEF%" />
+                            <String fx:value="DEF" />
+                            <String fx:value="Healing Bonus" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <ComboBox fx:id="selector5" layoutX="235.0" layoutY="192.0" prefWidth="150.0"
+                          promptText="Select Stat" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Select Stat" />
+                            <String fx:value="Crit Rate" />
+                            <String fx:value="Crit Damage" />
+                            <String fx:value="ATK%" />
+                            <String fx:value="ATK" />
+                            <String fx:value="Elemental Mastery" />
+                            <String fx:value="Energy Recharge" />
+                            <String fx:value="Physical DMG Bonus" />
+                            <String fx:value="Pyro DMG Bonus" />
+                            <String fx:value="Hydro DMG Bonus" />
+                            <String fx:value="Cryo DMG Bonus" />
+                            <String fx:value="Electro DMG Bonus" />
+                            <String fx:value="Anemo DMG Bonus" />
+                            <String fx:value="Geo DMG Bonus" />
+                            <String fx:value="Dendro DMG Bonus" />
+                            <String fx:value="HP%" />
+                            <String fx:value="HP" />
+                            <String fx:value="DEF%" />
+                            <String fx:value="DEF" />
+                            <String fx:value="Healing Bonus" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0"
+                      GridPane.columnIndex="3">
+                    <GridPane.margin>
+                        <Insets left="15.0" right="15.0" />
+                    </GridPane.margin>
+                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <Label text="Min" />
+                        <TextField fx:id="min1" alignment="CENTER" promptText="0" />
+                    </VBox>
+                    <VBox alignment="CENTER" layoutX="60.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                        <Label text="Max" />
+                        <TextField fx:id="max1" alignment="CENTER" promptText="10000" />
+                    </VBox>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="425.0" layoutY="10.0" prefHeight="100.0"
+                      prefWidth="200.0" spacing="20.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets left="15.0" right="15.0" />
+                    </GridPane.margin>
+                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <Label text="Min" />
+                        <TextField fx:id="min2" alignment="CENTER" promptText="0" />
+                    </VBox>
+                    <VBox alignment="CENTER" layoutX="60.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                        <Label text="Max" />
+                        <TextField fx:id="max2" alignment="CENTER" promptText="10000" />
+                    </VBox>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="425.0" layoutY="66.0" prefHeight="100.0"
+                      prefWidth="200.0" spacing="20.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets left="15.0" right="15.0" />
+                    </GridPane.margin>
+                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <Label text="Min" />
+                        <TextField fx:id="min3" alignment="CENTER" promptText="0" />
+                    </VBox>
+                    <VBox alignment="CENTER" layoutX="60.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                        <Label text="Max" />
+                        <TextField fx:id="max3" alignment="CENTER" promptText="10000" />
+                    </VBox>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="410.0" layoutY="122.0" prefHeight="100.0"
+                      prefWidth="200.0" spacing="20.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                    <GridPane.margin>
+                        <Insets left="15.0" right="15.0" />
+                    </GridPane.margin>
+                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <Label text="Min" />
+                        <TextField fx:id="min4" alignment="CENTER" promptText="0" />
+                    </VBox>
+                    <VBox alignment="CENTER" layoutX="60.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                        <Label text="Max" />
+                        <TextField fx:id="max4" alignment="CENTER" promptText="10000" />
+                    </VBox>
+                </HBox>
+                <HBox alignment="CENTER" layoutX="410.0" layoutY="177.0" prefHeight="100.0"
+                      prefWidth="200.0" spacing="20.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                    <GridPane.margin>
+                        <Insets left="15.0" right="15.0" />
+                    </GridPane.margin>
+                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <Label text="Min" />
+                        <TextField fx:id="min5" alignment="CENTER" promptText="0" />
+                    </VBox>
+                    <VBox alignment="CENTER" layoutX="60.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                        <Label text="Max" />
+                        <TextField fx:id="max5" alignment="CENTER" promptText="10000" />
+                    </VBox>
+                </HBox>
+            </children>
+        </GridPane>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="600.0" spacing="15.0">
+         <children>
+            <TextField fx:id="numMatchesRequired" alignment="CENTER" maxWidth="250.0" prefWidth="250.0" promptText="Number of Matches Required (Default 1)" />
+         </children>
+      </HBox>
+    </children>
+</VBox>

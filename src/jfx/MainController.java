@@ -33,37 +33,46 @@ public class MainController {
     @FXML
     private TextField monitorHeight;
 
-    private int currentExactMatchID = 0;
-    private final List<Pair<Integer, ExactMatch>> exactMatchList = new ArrayList<>();
-    private int currentAtLeastXID = 0;
-    private final List<Pair<Integer, ExactMatch>> atLeastXList = new ArrayList<>();
-    private AtLeastXEditorController ALXEC;
+    //private int currentExactMatchID = 0;
+    //private final List<Pair<Integer, ExactMatch>> exactMatchList = new ArrayList<>();
+    //private int currentAtLeastXID = 0;
+    //private final List<Pair<Integer, ExactMatch>> atLeastXList = new ArrayList<>();
+    //private AtLeastXEditorController ALXEC;
+    //private List<ExactMatch> exactMatchList;
+    private ExactMatchSelectionController EMSC;
+    private MultiMatchSelectionController MMSC;
+
 
     /**
      * Method used by ExactMatchConditionEditorController to add an ExactMatch condition.
      * @param exactMatchCondition
      * @return id of the added ExactMatch condition
      */
+    /*
     public int addExactMatchCondition(ExactMatch exactMatchCondition) {
         exactMatchList.add(new Pair<>(currentExactMatchID, exactMatchCondition));
         return currentExactMatchID++;
     }
+     */
 
     /**
      * Method used by AtLeastXEditorController to temporarily add a sub-condition.
      * @param atLeastXCondition
      * @return id of the added sub-condition
      */
+    /*
     public int addAtLeastXCondition(ExactMatch atLeastXCondition) {
         atLeastXList.add(new Pair<>(currentAtLeastXID, atLeastXCondition));
         return currentAtLeastXID++;
     }
+     */
 
     /**
      * Method used by ExactMatchConditionEditorController to remove an ExactMatch condition.
      * @param id
      * @return true if successful, false if unsuccessful
      */
+    /*
     public boolean removeExactMatchByID(int id) {
         for (int i = 0; i < exactMatchList.size(); i++) {
             if (exactMatchList.get(i).getFirst().equals(id)) {
@@ -73,12 +82,14 @@ public class MainController {
         }
         return false;
     }
+     */
 
     /**
      * Method used by AtLeastXEditorController to remove a sub-condition.
      * @param id
      * @return true if successful, false if unsuccessful
      */
+    /*
     public boolean removeAtLeastXByID(int id) {
         for (int i = 0; i < atLeastXList.size(); i++) {
             if (atLeastXList.get(i).getFirst().equals(id)) {
@@ -88,6 +99,7 @@ public class MainController {
         }
         return false;
     }
+     */
 
     /**
      * Method executed when the main button is pressed.
@@ -100,9 +112,19 @@ public class MainController {
     @FXML
     protected void startProcess(ActionEvent ae) {
         List<Condition> conditions = new ArrayList<>();
+        /*
         for (Pair<Integer, ExactMatch> pair : exactMatchList) {
             conditions.add(pair.getLast());
         }
+         */
+        if (EMSC != null) {
+            conditions.addAll(EMSC.getAllConditions());
+        }
+        if (MMSC != null) {
+            conditions.add(MMSC.getCondition());
+        }
+
+        /*
         if (atLeastXList.size() > 0) {
             int xVal = atLeastXList.size();
             if (ALXEC != null) {
@@ -149,6 +171,7 @@ public class MainController {
                 conditions.add(aLX);
             }
         }
+         */
 
         Condition[] conds = conditions.toArray(new Condition[0]);
 
@@ -163,6 +186,7 @@ public class MainController {
         System.out.println("Five Stars Only: " + FIVE_STARS_ONLY_CHECKED);
         System.out.println("Conditions: " + Arrays.toString(conds));
 
+
         Scanner sc = new Scanner(textFieldToInt(monitorWidth),
                 textFieldToInt(monitorHeight), fiveStarCheckbox.isSelected(), conds);
 
@@ -171,6 +195,8 @@ public class MainController {
         Pair<Integer, Integer> result = sc.execute();
         System.out.println("Scanned " + result.getFirst() + " artifacts.");
         System.out.println("Locked " + result.getLast() + " artifacts.");
+
+
     }
 
 
@@ -186,10 +212,11 @@ public class MainController {
         stage.setTitle("Exact Match Condition Editor");
         stage.initModality(Modality.APPLICATION_MODAL);
         if (exactMatchEditorScene == null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ExactMatchEditor.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ExactMatchSelection.fxml"));
             exactMatchEditorScene = new Scene(loader.load());
-            ExactMatchConditionEditorController controller = loader.getController();
-            controller.attachMainController(this);
+            //ExactMatchConditionEditorController controller = loader.getController();
+            //controller.attachMainController(this);
+            EMSC = loader.getController();
         }
         stage.setScene(exactMatchEditorScene);
         stage.showAndWait();
@@ -207,11 +234,9 @@ public class MainController {
         stage.setTitle("Multi Match Condition Editor");
         stage.initModality(Modality.APPLICATION_MODAL);
         if (atLeastXEditorScene == null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AtLeastXEditor.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MultiMatchSelection.fxml"));
             atLeastXEditorScene = new Scene(loader.load());
-            AtLeastXEditorController controller = loader.getController();
-            controller.attachMainController(this);
-            ALXEC = controller;
+            MMSC = loader.getController();
         }
         stage.setScene(atLeastXEditorScene);
         stage.showAndWait();
