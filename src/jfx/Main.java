@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MainController.fxml"));
-        primaryStage.setTitle("Genshin Artifact Locker V1.0");
+        primaryStage.setTitle("Genshin Artifact Locker V1.1");
         primaryStage.setScene(new Scene(root, 500, 500));
         primaryStage.show();
     }

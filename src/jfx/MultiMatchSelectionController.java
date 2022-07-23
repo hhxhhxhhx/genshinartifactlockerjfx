@@ -1,7 +1,6 @@
 package jfx;
 
 import condition.AtLeastX;
-import condition.ExactMatch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
