@@ -104,8 +104,12 @@ public class Logic {
         // Value doesn't match either one. Error.
         } else {
             System.out.println(rgb);
+            /*
             throw new RuntimeException("Error in main.Logic.isLocked(). RGB value does not match " +
                     "either locked or unlocked symbols!");
+             */
+            // Ignore the error, could occur due to pixel being off by a bit.
+            return false;
         }
     }
 
